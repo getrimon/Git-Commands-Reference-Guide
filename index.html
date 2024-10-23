@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Git Commands Reference</title>
+    <style>
+        body {
+            background-color: #1e1e1e;
+            color: #ffffff;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        h1 {
+            text-align: center;
+            margin-top: 20px;
+            color: #00aaff;
+        }
+        table {
+            width: 80%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            border: 1px solid #333;
+        }
+        th, td {
+            padding: 15px;
+            text-align: left;
+            border: 1px solid #333;
+        }
+        th {
+            background-color: #282c34;
+        }
+        tr:nth-child(even) {
+            background-color: #2e2e2e;
+        }
+        tr:nth-child(odd) {
+            background-color: #252525;
+        }
+        .copy-btn {
+            background-color: #00aaff;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        .copy-btn:hover {
+            background-color: #0088cc;
+        }
+        .popup {
+            display: none;
+            background-color: #00ff00;
+            color: black;
+            padding: 10px;
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Git Commands Reference Guide</h1>
+
+    <div class="popup" id="popup">Command copied to clipboard!</div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Command</th>
+                <th>Description</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Push</td>
+                <td><code>git push &lt;remote&gt; &lt;branch&gt;</code></td>
+                <td>Upload local changes to the remote repository.</td>
+                <td><button class="copy-btn" onclick="copyCommand('git push <remote> <branch>')">Copy</button></td>
+            </tr>
+            <tr>
+                <td>Push All</td>
+                <td><code>git push --all &lt;remote&gt;</code></td>
+                <td>Push all branches to the remote.</td>
+                <td><button class="copy-btn" onclick="copyCommand('git push --all <remote>')">Copy</button></td>
+            </tr>
+            <tr>
+                <td>Pull</td>
+                <td><code>git pull &lt;remote&gt; &lt;branch&gt;</code></td>
+                <td>Fetch and integrate changes from the remote.</td>
+                <td><button class="copy-btn" onclick="copyCommand('git pull <remote> <branch>')">Copy</button></td>
+            </tr>
+            <tr>
+                <td>Clone</td>
+                <td><code>git clone &lt;repo-url&gt;</code></td>
+                <td>Create a local copy of a remote repository.</td>
+                <td><button class="copy-btn" onclick="copyCommand('git clone <repo-url>')">Copy</button></td>
+            </tr>
+            <tr>
+                <td>Commit</td>
+                <td><code>git commit -m "message"</code></td>
+                <td>Record changes to the repository.</td>
+                <td><button class="copy-btn" onclick="copyCommand('git commit -m \"message\"')">Copy</button></td>
+            </tr>
+            <tr>
+                <td>Add</td>
+                <td><code>git add &lt;file&gt;</code></td>
+                <td>Add changes to the staging area.</td>
+                <td><button class="copy-btn" onclick="copyCommand('git add <file>')">Copy</button></td>
+            </tr>
+            <tr>
+                <td>Status</td>
+                <td><code>git status</code></td>
+                <td>Show the working tree status.</td>
+                <td><button class="copy-btn" onclick="copyCommand('git status')">Copy</button></td>
+            </tr>
+            <tr>
+                <td>Branch</td>
+                <td><code>git branch &lt;branch-name&gt;</code></td>
+                <td>Create a new branch.</td>
+                <td><button class="copy-btn" onclick="copyCommand('git branch <branch-name>')">Copy</button></td>
+            </tr>
+            <tr>
+                <td>Merge</td>
+                <td><code>git merge &lt;branch&gt;</code></td>
+                <td>Join branches together.</td>
+                <td><button class="copy-btn" onclick="copyCommand('git merge <branch>')">Copy</button></td>
+            </tr>
+            <tr>
+                <td>Checkout</td>
+                <td><code>git checkout &lt;branch-name&gt;</code></td>
+                <td>Switch branches or restore files.</td>
+                <td><button class="copy-btn" onclick="copyCommand('git checkout <branch-name>')">Copy</button></td>
+            </tr>
+            <tr>
+                <td>Log</td>
+                <td><code>git log</code></td>
+                <td>Show commit logs.</td>
+                <td><button class="copy-btn" onclick="copyCommand('git log')">Copy</button></td>
+            </tr>
+            <tr>
+                <td>Init</td>
+                <td><code>git init</code></td>
+                <td>Initialize a new Git repository.</td>
+                <td><button class="copy-btn" onclick="copyCommand('git init')">Copy</button></td>
+            </tr>
+            <tr>
+                <td>Fetch</td>
+                <td><code>git fetch &lt;remote&gt;</code></td>
+                <td>Download objects and refs from another repository.</td>
+                <td><button class="copy-btn" onclick="copyCommand('git fetch <remote>')">Copy</button></td>
+            </tr>
+            <tr>
+                <td>Rebase</td>
+                <td><code>git rebase &lt;branch&gt;</code></td>
+                <td>Reapply commits on top of another base tip.</td>
+                <td><button class="copy-btn" onclick="copyCommand('git rebase <branch>')">Copy</button></td>
+            </tr>
+            <tr>
+                <td>Stash</td>
+                <td><code>git stash</code></td>
+                <td>Temporarily store changes.</td>
+                <td><button class="copy-btn" onclick="copyCommand('git stash')">Copy</button></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <script>
+        function copyCommand(command) {
+            navigator.clipboard.writeText(command).then(function() {
+                var popup = document.getElementById("popup");
+                popup.style.display = "block";
+                setTimeout(function() {
+                    popup.style.display = "none";
+                }, 1500);
+            }, function(err) {
+                console.error('Could not copy text: ', err);
+            });
+        }
+    </script>
+</body>
+</html>
